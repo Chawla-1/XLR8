@@ -7,9 +7,9 @@ from __future__ import annotations
 
 from datetime import date
 from enum import Enum
-from typing import Literal
+from typing import Any, Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 # ── Enums ──────────────────────────────────────────────────────────────────
@@ -163,22 +163,27 @@ class EventVerification(BaseModel):
 
 class CaseFile(BaseModel):
     """The shared blackboard — all agents read and write to this."""
-    case_id: str
+    model_config = ConfigDict(use_enum_values=True, arbitrary_types_allowed=True)
+
+    case_id: str = "case_001"
     question: str
     as_of: date
     event_id: str
-    target_flows: list[tuple[str, str]]  # [(country, sector), ...]
-    verification: EventVerification | None = None
-    status: CaseStatus = CaseStatus.OPEN
+    target_flows: list[tuple[str, str]] = []  # [(country, sector), ...]
+    countries: list[str] = []
+    sectors: list[str] = []
+    verification: Any = None
+    status: CaseStatus | str = CaseStatus.OPEN
     run_no: int = 1
     round_no: int = 1
     claims: list[Claim] = []
     challenges: list[Challenge] = []
     responses: list[Response] = []
     rulings: list[Ruling] = []
-    retrieved_ids_by_run: dict[int, list[str]] = {}
+    retrieved_ids_by_run: dict[int, Any] = {}
     gaps: list[str] = []
     briefing_md: str | None = None
+    evidence: dict[str, Any] = {}
+    exposures: dict[str, Any] = {}
+    trade_tables: dict[str, Any] = {}
 
-    class Config:
-        use_enum_values = True
