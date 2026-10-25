@@ -66,8 +66,8 @@ python -m tests.test_ingestion
 |---|---|---|:---:|---|
 | **[Saksham Kumar](https://github.com/SakshamKumar4) (Person A)** | **Frontend & System Architecture** | `ui/app.py`, `src/api/`, `src/core/trace.py`, `README.md` | **25%** | `feat/frontend-and-docs` |
 | **[Aaryan Chawla](https://github.com/Chawla-1) (Person B)** | **Data Ingestion & Search Engine** | `src/ingest/*`, `src/index/bm25.py`, `requirements.txt` | **25%** | `feat/data-layer` |
-| **Member 3 (Person C)** | **Judicial Magistrate & Schemas** | `src/core/schemas.py`, `src/agents/heimdall.py`, `src/agents/odin.py` | **25%** | `feat/core-schemas` |
-| **Member 4 (Person D)** | **Adversarial Agents & Calc Engine** | `src/calc/*`, `src/agents/thor.py`, `src/agents/loki.py`, `src/brain/` | **25%** | `feat/calc-engine` |
+| **[Bhavneet Singh](https://github.com/Bhavneet31r) (Person C)** | **Judicial Magistrate & Schemas** | `src/core/schemas.py`, `src/agents/heimdall.py`, `src/agents/odin.py` | **25%** | `feat/heimdall-odin` |
+| **[Yasharth Nagda](https://github.com/Yasharth-8) (Person D)** | **Adversarial Agents & Calc Engine** | `src/calc/*`, `src/agents/thor.py`, `src/agents/loki.py`, `src/brain/` | **25%** | `feat/thor-loki` |
 
 > *Note: All members participate equally in multi-agent orchestration design, integration review, and system evaluation.*
 

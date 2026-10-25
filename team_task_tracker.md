@@ -11,8 +11,8 @@
 |---|---|---|---|
 | **Person A** — Frontend & UI | Saksham Kumar (`@SakshamKumar4`) | Dashboard, Briefing Renderer, API layer, README/docs | `feat/frontend-and-docs` |
 | **Person B** — Data Foundation | Aaryan Chawla (`@Chawla-1`) | Ingestion pipeline, Search index, Trust layer, Clock filter, Injection scanner | `feat/data-layer` |
-| **Person C** — Heimdall + Odin | *[Name]* | Event verification, Judicial rulings, State machine, Claude integration, Schemas | `feat/heimdall-odin` |
-| **Person D** — Thor + Loki | *[Name]* | Opposing claims, Cross-exam, Exposure calculator, Trade table parser, Memory | `feat/thor-loki` |
+| **Person C** — Heimdall + Odin | Bhavneet Singh (`@Bhavneet31r`) | Event verification, Judicial rulings, State machine, Claude integration, Schemas | `feat/heimdall-odin` |
+| **Person D** — Thor + Loki | Yasharth Nagda (`@Yasharth-8`) | Opposing claims, Cross-exam, Exposure calculator, Trade table parser, Memory | `feat/thor-loki` |
 
 > Everyone shares: tests, final integration, dry runs.
 
