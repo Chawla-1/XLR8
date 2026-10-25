@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+
+# Environment variables & secrets
+.env
+.env.local
+*.secret
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Output logs (keep directory, ignore outputs)
+runs/*
+!runs/.gitkeep
+
+# OS
+.DS_Store
+Thumbs.db
