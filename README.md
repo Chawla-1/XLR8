@@ -23,19 +23,44 @@
 
 ```mermaid
 graph TD
-    User([User Question / Disruption Event]) --> Heimdall[👁️ Heimdall: Verification & Evidence]
-    Heimdall --> CaseFile[(Shared Case File)]
-    
-    CaseFile --> Thor[⚡ Thor: Maximum Exposure Claims]
-    CaseFile --> Loki[🐍 Loki: Resilient Mitigation Claims]
-    
-    Thor <-->|Cross-Examination & Rebuttals| Loki
-    
-    Thor --> Odin[👑 Odin: Judicial Review & Ruling]
+    User([User Question: Importers, Sectors, as-of]) --> Heimdall[👁️ Heimdall: Verification & Matrix Assembly]
+
+    subgraph ToolLayer [Shared Tool Layer (No Boss)]
+        Index[🔍 Search Index: Lexical + Clock Filter + Exclusion]
+        Quarantine[🛡️ Quarantine & Duplicate SHA-256 Engine]
+        Calc[🧮 Calculator: Importer-Side Baseline & Substitution]
+        Validator[📋 Manifest & Paragraph Citation Validator]
+    end
+
+    Heimdall -.->|Queries Corpus| Index
+    Heimdall -.->|Checks Integrity| Quarantine
+    Heimdall --> CaseFile[(Shared Case File & Coverage Matrix)]
+
+    subgraph AdversarialCourt [Adversarial Debate]
+        CaseFile --> Thor[⚡ Thor: Gross Disruption & Cost Friction]
+        CaseFile --> Loki[🐍 Loki: Baseline-Relative Substitution]
+        Thor <-->|Cross-Examination & Concessions| Loki
+    end
+
+    Thor -.->|Calculates Gross Loss| Calc
+    Loki -.->|Calculates Net Offset| Calc
+
+    Thor --> Odin[👑 Odin: Supreme Magistrate]
     Loki --> Odin
-    
-    Odin --> RangeCalc[Deterministic Calculator]
-    RangeCalc --> Briefing[Executive Briefing & Visual Dashboard]
+
+    Odin -.->|Validates Bounds| Calc
+    Odin -.->|Validates Doc & Para| Validator
+
+    subgraph ControlPlane [FSM State Machine (Limit Guard)]
+        FSM[Enforces: Runs ≤2, Rounds ≤2, Remand Routing by Odin's Status Flag]
+    end
+    FSM -.-> AdversarialCourt
+    FSM -.-> Odin
+
+    Odin --> Check{Coverage Matrix Check}
+    Check -->|Gaps in Run 1| Remand[Remand Notice: Specific Missing Cells]
+    Remand --> Heimdall
+    Check -->|Run 2 Done| Briefing[Executive Briefing & Visual Dashboard]
 ```
 
 ---
@@ -53,11 +78,22 @@ python -m venv venv
 source venv/bin/activate
 
 pip install -r requirements.txt
+cp .env.example .env
 ```
 
 ### 2. Run Ingestion Tests
 ```bash
 python -m tests.test_ingestion
+```
+
+### 3. Run Trial Pipeline (CLI)
+```bash
+python run_trial.py
+```
+
+### 4. Launch Interactive Courtroom Dashboard (UI)
+```bash
+streamlit run ui/app.py
 ```
 
 ## 👥 Team Contributions & Division of Work (Equal 25% Share)
