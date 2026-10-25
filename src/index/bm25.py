@@ -45,6 +45,11 @@ class SearchIndex:
         
         # Build lookup indexes
         self._by_id: dict[str, Document] = {d.doc_id: d for d in documents}
+        self.last_clock_excluded_count: int = 0
+
+    def count_excluded_by_clock(self, as_of: date) -> int:
+        """Count total documents in active corpus published after as_of."""
+        return sum(1 for d in self.active_docs if d.pub_date > as_of)
     
     @staticmethod
     def _tokenize(text: str) -> list[str]:
@@ -92,6 +97,7 @@ class SearchIndex:
         
         # Pair docs with scores and filter
         results: list[tuple[Document, float]] = []
+        clock_excluded = 0
         
         for doc, score in zip(self.active_docs, scores):
             # Hard metadata filters (applied in code, not prompt)
@@ -111,12 +117,15 @@ class SearchIndex:
             
             # CLOCK FILTER — this is critical for scoring
             if as_of is not None and doc.pub_date > as_of:
+                clock_excluded += 1
                 continue
             
             if exclude_ids and doc.doc_id in exclude_ids:
                 continue
             
             results.append((doc, score))
+        
+        self.last_clock_excluded_count = clock_excluded
         
         # Sort by BM25 score descending
         results.sort(key=lambda x: x[1], reverse=True)
