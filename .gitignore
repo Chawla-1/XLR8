@@ -24,6 +24,17 @@ ENV/
 runs/*
 !runs/.gitkeep
 
+# Internal strategy & planning docs (confidential)
+hackathon_roadmap.md
+team_task_tracker.md
+*.tmp
+*.bak
+
+# Hackathon organizer materials
+*PS.pdf
+*Problem Statement*.pdf
+
 # OS
 .DS_Store
 Thumbs.db
+
