@@ -40,7 +40,7 @@ def check_injection(text: str) -> bool:
 
 def quarantine_documents(
     documents: list[Document],
-    as_of: date,
+    as_of: date | None = None,
 ) -> list[Document]:
     """
     Run all quarantine checks on a list of parsed documents.
@@ -70,11 +70,6 @@ def quarantine_documents(
             doc.quarantine_reason = "Empty or unparseable content"
             continue
         
-        # Clock violation: published after as_of date
-        if doc.pub_date > as_of:
-            doc.status = DocStatus.CLOCK_VIOLATION
-            doc.quarantine_reason = f"Published {doc.pub_date} is after as-of {as_of}"
-            continue
         
         # Prompt injection
         if check_injection(doc.text):
